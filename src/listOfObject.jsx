@@ -8,9 +8,9 @@ import List from './components/list';
 
 const ListOfObject = () => {
   // declare variables for filtering
-  const [productTypeFilter, setProductTypeFilter] = useState(''); // ilter value for the product type
-  const [priceRangeMin, setPriceRangeMin] = useState(''); // minimum price range value for filtering
-  const [priceRangeMax, setPriceRangeMax] = useState(''); //maximum price range value for filtering
+  const [productTypeFilter, setProductTypeFilter] = useState(''); // filterfor the product type
+  const [priceRangeMin, setPriceRangeMin] = useState(''); // minimum price range value for filter
+  const [priceRangeMax, setPriceRangeMax] = useState(''); //maximum price range value for filter
   const [searchBy, setSearchBy] = useState('productType'); //type of search being performed (either 'productType' or 'price'). Default is 'productType'
 
   const handleFilter = () => {
