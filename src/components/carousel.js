@@ -33,53 +33,133 @@ export default function Carousel() {
 
   return (
     <section id="slider">
+      {/* Radio buttons for each slide */}
       <input type="radio" name="slider" id="s1" checked={currentSlide === 1} onChange={() => handleRadioChange(1)} />
       <input type="radio" name="slider" id="s2" checked={currentSlide === 2} onChange={() => handleRadioChange(2)} />
       <input type="radio" name="slider" id="s3" checked={currentSlide === 3} onChange={() => handleRadioChange(3)} />
       <input type="radio" name="slider" id="s4" checked={currentSlide === 4} onChange={() => handleRadioChange(4)} />
       <input type="radio" name="slider" id="s5" checked={currentSlide === 5} onChange={() => handleRadioChange(5)} />
-      {/* <input type="radio" name="slider" id="s6" checked={currentSlide === 6} onChange={() => handleRadioChange(6)} /> */}
-      {/*<input type="radio" name="slider" id="s7" checked={currentSlide === 7} onChange={() => handleRadioChange(7)} /> */}
-      {/* <input type="radio" name="slider" id="s8" checked={currentSlide === 8} onChange={() => handleRadioChange(8)} />
-      <input type="radio" name="slider" id="s9" checked={currentSlide === 9} onChange={() => handleRadioChange(9)} />
-      <input type="radio" name="slider" id="s10" checked={currentSlide === 10} onChange={() => handleRadioChange(10)} /> */} 
 
-
+      {/* Slides with labels and images */}
       <label htmlFor="s1" id="slide1">
-      <Link to="/listOfObject">
-         <img src={Camera} alt="" />
+        <Link to="/listOfObject">
+          <img src={Camera} alt="" />
         </Link>
       </label>
       <label htmlFor="s2" id="slide2">
-      <Link to="/listOfObject">
-        <img src={Dron} alt="" />
+        <Link to="/listOfObject">
+          <img src={Dron} alt="" />
         </Link>
       </label>
       <label htmlFor="s3" id="slide3">
-      <Link to="/listOfObject">
-        <img src={Headphones} alt="" />
+        <Link to="/listOfObject">
+          <img src={Headphones} alt="" />
         </Link>
       </label>
       <label htmlFor="s4" id="slide4">
-      <Link to="/listOfObject">
-        <img src={Laptop} alt="" />
+        <Link to="/listOfObject">
+          <img src={Laptop} alt="" />
         </Link>
       </label>
       <label htmlFor="s5" id="slide5">
-      <Link to="/listOfObject">
-        <img src={Segurity} alt="" />
+        <Link to="/listOfObject">
+          <img src={Segurity} alt="" />
         </Link>
       </label>
-      {/* <label htmlFor="s6" id="slide6">
-      <img src={Pc} alt="" />
-      </label>
-      */}
-      
-     
-      
     </section>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export default function Carousel() {
+//   const [currentSlide, setCurrentSlide] = useState(1);
+
+//   useEffect(() => {
+//     const intervalId = setInterval(() => {
+//       // Move to the next slide
+//       setCurrentSlide((prevSlide) => (prevSlide % 5) + 1);
+//     }, 3000); // Change slide every 3 seconds
+
+//     return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+//   }, []);
+
+//   const handleRadioChange = (slideNumber) => {
+//     setCurrentSlide(slideNumber);
+//   };
+
+//   return (
+//     <section id="slider">
+//       <input type="radio" name="slider" id="s1" checked={currentSlide === 1} onChange={() => handleRadioChange(1)} />
+//       <input type="radio" name="slider" id="s2" checked={currentSlide === 2} onChange={() => handleRadioChange(2)} />
+//       <input type="radio" name="slider" id="s3" checked={currentSlide === 3} onChange={() => handleRadioChange(3)} />
+//       <input type="radio" name="slider" id="s4" checked={currentSlide === 4} onChange={() => handleRadioChange(4)} />
+//       <input type="radio" name="slider" id="s5" checked={currentSlide === 5} onChange={() => handleRadioChange(5)} />
+//       {/* <input type="radio" name="slider" id="s6" checked={currentSlide === 6} onChange={() => handleRadioChange(6)} /> */}
+//       {/*<input type="radio" name="slider" id="s7" checked={currentSlide === 7} onChange={() => handleRadioChange(7)} /> */}
+//       {/* <input type="radio" name="slider" id="s8" checked={currentSlide === 8} onChange={() => handleRadioChange(8)} />
+//       <input type="radio" name="slider" id="s9" checked={currentSlide === 9} onChange={() => handleRadioChange(9)} />
+//       <input type="radio" name="slider" id="s10" checked={currentSlide === 10} onChange={() => handleRadioChange(10)} /> */} 
+
+
+//       <label htmlFor="s1" id="slide1">
+//       <Link to="/listOfObject">
+//          <img src={Camera} alt="" />
+//         </Link>
+//       </label>
+//       <label htmlFor="s2" id="slide2">
+//       <Link to="/listOfObject">
+//         <img src={Dron} alt="" />
+//         </Link>
+//       </label>
+//       <label htmlFor="s3" id="slide3">
+//       <Link to="/listOfObject">
+//         <img src={Headphones} alt="" />
+//         </Link>
+//       </label>
+//       <label htmlFor="s4" id="slide4">
+//       <Link to="/listOfObject">
+//         <img src={Laptop} alt="" />
+//         </Link>
+//       </label>
+//       <label htmlFor="s5" id="slide5">
+//       <Link to="/listOfObject">
+//         <img src={Segurity} alt="" />
+//         </Link>
+//       </label>
+//       {/* <label htmlFor="s6" id="slide6">
+//       <img src={Pc} alt="" />
+//       </label>
+//       */}
+      
+     
+      
+//     </section>
+//   );
+// }
 
 
 // import React from 'react'

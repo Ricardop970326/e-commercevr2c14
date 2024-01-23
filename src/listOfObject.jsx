@@ -2,92 +2,207 @@ import React, { useState } from 'react';
 // import Dron from "../image/dron.jpeg"
 // import Camera from "../image/camera.jpg"
 // import Headphones from "../image/headphones.jpg"
-import Navbar from "./components/navbar"
-import Footer from "./components/footer"
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 import List from './components/list';
 
 const ListOfObject = () => {
-  const [productTypeFilter, setProductTypeFilter] = useState('');
-  const [priceRangeMin, setPriceRangeMin] = useState('');
-  const [priceRangeMax, setPriceRangeMax] = useState('');
-  const [searchBy, setSearchBy] = useState('productType'); // Default to searching by product type
+  // declare variables for filtering
+  const [productTypeFilter, setProductTypeFilter] = useState(''); // ilter value for the product type
+  const [priceRangeMin, setPriceRangeMin] = useState(''); // minimum price range value for filtering
+  const [priceRangeMax, setPriceRangeMax] = useState(''); //maximum price range value for filtering
+  const [searchBy, setSearchBy] = useState('productType'); //type of search being performed (either 'productType' or 'price'). Default is 'productType'
 
   const handleFilter = () => {
     // Convert priceRangeMin and priceRangeMax to numbers
-    const min = priceRangeMin === '' ? 0 : Number(priceRangeMin);
+    const min = priceRangeMin === '' ? 10 : Number(priceRangeMin);
     const max = priceRangeMax === '' ? Infinity : Number(priceRangeMax);
 
     // Pass filter criteria to the List component
     const filters = {
-      productType: searchBy === 'productType' ? productTypeFilter : '',
-      priceRange: searchBy === 'price' ? [min, max] : [],
+      productType: searchBy === 'productType' ? productTypeFilter : '', // Use this if the search is by product type
+      priceRange: searchBy === 'price' ? [min, max] : [], // Use [min, max] if  is by price range
     };
 
-    return <List filters={filters} />;
-
+    return <List filters={filters} />; // Return the List component with the filters as props
   };
+
 
   return (
     <>
-
       <Navbar />
 
-<div>
-      {/* Title */}
-      <h1 id='titlelist'>List of Products</h1>
-
-      {/* Input fields and dropdown for filtering */}
- 
       <div>
-        <select className='dropdownmenu1' value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
-          <option value="productType">Search by Product Type</option>
-          <option value="price">Search by Price</option>
-        </select>
-        {searchBy === 'productType' && (
-  <input 
-    type="text"
-    placeholder="Product Type"
-    value={productTypeFilter}
-    onChange={(e) => setProductTypeFilter(e.target.value)}
-    className="your-custom-class" 
-    style={{  border:' 1px solid #9a9797',
-      borderRadius: '10px',
-      padding:'5px',
-      margin: '10px',
-      marginBottom: '20px',}}
-  />
-)}
-{searchBy === 'price' && (
-  <>
-    <input className='textmenu'
-      type="number"
-      placeholder="Min Price"
-      value={priceRangeMin}
-      onChange={(e) => setPriceRangeMin(e.target.value)}
-    />
-    <input className='textmenu'
-      type="number"
-      placeholder="Max Price"
-      value={priceRangeMax}
-      onChange={(e) => setPriceRangeMax(e.target.value)}
-    />
-          </>
-        )}
-        {/* <button className='dropdownmenu2' onClick={handleFilter}>Apply Filters</button> */}
+        <h1 id='titlelist'>List of Products</h1>
+
+        {/* Input fields and dropdown for filter*/}
+        <div>
+          <select className='dropdownmenu1' value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+            <option value="productType">Search by Product Type</option>
+            <option value="price">Search by Price</option>
+          </select>
+          {searchBy === 'productType' && (
+            <input 
+              type="text"
+              placeholder="Product Type"
+              value={productTypeFilter}
+              onChange={(e) => setProductTypeFilter(e.target.value)}
+              className="your-custom-class" 
+              style={{  
+                border:' 1px solid #9a9797',
+                borderRadius: '10px',
+                padding:'5px',
+                margin: '10px',
+                marginBottom: '20px',
+              }}
+            />
+          )}
+          {searchBy === 'price' && (
+            <>
+              <input className='textmenu'
+                type="number"
+                placeholder="Min Price"
+                value={priceRangeMin}
+                onChange={(e) => setPriceRangeMin(e.target.value)}
+              />
+              <input className='textmenu'
+                type="number"
+                placeholder="Max Price"
+                value={priceRangeMax}
+                onChange={(e) => setPriceRangeMax(e.target.value)}
+              />
+            </>
+          )}
+          {/* <button className='dropdownmenu2' onClick={handleFilter}>Apply Filters</button> */}
+        </div>
+        
+        {/* Call the handleFilter function to display the filtered list */}
+        {handleFilter()}
+        
+        {/* List component with filtering props */}
       </div>
-      {handleFilter()}
-      {/* List component with filtering props */}
-    
-     </div>
-     <Footer/>
- 
-    </> 
-    
-    
+      <Footer/>
+    </>
   );
 }
 
 export default ListOfObject;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// // import Dron from "../image/dron.jpeg"
+// // import Camera from "../image/camera.jpg"
+// // import Headphones from "../image/headphones.jpg"
+// import Navbar from "./components/navbar"
+// import Footer from "./components/footer"
+// import List from './components/list';
+
+// const ListOfObject = () => {
+//   const [productTypeFilter, setProductTypeFilter] = useState('');
+//   const [priceRangeMin, setPriceRangeMin] = useState('');
+//   const [priceRangeMax, setPriceRangeMax] = useState('');
+//   const [searchBy, setSearchBy] = useState('productType'); // Default to searching by product type
+
+//   const handleFilter = () => {
+//     // Convert priceRangeMin and priceRangeMax to numbers
+//     const min = priceRangeMin === '' ? 0 : Number(priceRangeMin);
+//     const max = priceRangeMax === '' ? Infinity : Number(priceRangeMax);
+
+//     // Pass filter criteria to the List component
+//     const filters = {
+//       productType: searchBy === 'productType' ? productTypeFilter : '',
+//       priceRange: searchBy === 'price' ? [min, max] : [],
+//     };
+
+//     return <List filters={filters} />;
+
+//   };
+
+//   return (
+//     <>
+
+//       <Navbar />
+
+// <div>
+//       {/* Title */}
+//       <h1 id='titlelist'>List of Products</h1>
+
+//       {/* Input fields and dropdown for filtering */}
+ 
+//       <div>
+//         <select className='dropdownmenu1' value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+//           <option value="productType">Search by Product Type</option>
+//           <option value="price">Search by Price</option>
+//         </select>
+//         {searchBy === 'productType' && (
+//   <input 
+//     type="text"
+//     placeholder="Product Type"
+//     value={productTypeFilter}
+//     onChange={(e) => setProductTypeFilter(e.target.value)}
+//     className="your-custom-class" 
+//     style={{  border:' 1px solid #9a9797',
+//       borderRadius: '10px',
+//       padding:'5px',
+//       margin: '10px',
+//       marginBottom: '20px',}}
+//   />
+// )}
+// {searchBy === 'price' && (
+//   <>
+//     <input className='textmenu'
+//       type="number"
+//       placeholder="Min Price"
+//       value={priceRangeMin}
+//       onChange={(e) => setPriceRangeMin(e.target.value)}
+//     />
+//     <input className='textmenu'
+//       type="number"
+//       placeholder="Max Price"
+//       value={priceRangeMax}
+//       onChange={(e) => setPriceRangeMax(e.target.value)}
+//     />
+//           </>
+//         )}
+//         {/* <button className='dropdownmenu2' onClick={handleFilter}>Apply Filters</button> */}
+//       </div>
+//       {handleFilter()}
+//       {/* List component with filtering props */}
+    
+//      </div>
+//      <Footer/>
+ 
+//     </> 
+    
+    
+//   );
+// }
+
+// export default ListOfObject;
 
 
 

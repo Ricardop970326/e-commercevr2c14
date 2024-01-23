@@ -5,40 +5,36 @@ import Home from "./home.jsx";
 import List from "./listOfObject.jsx";
 import Contact from "./contact.jsx";
 
-
-
-// import  Component  from "materialize-css";
+// Import the necessary CSS file
 
 function App() {
   return (
     <div className="App">
       <Router>
         <div>
-          {/* <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
-            </ul>
-          </nav> */}
-         <Routes>
-  <Route path="/" element={<Home />} />
-  <Route path="/listOfObject" element={<List />} />
+          {/* Define the routes using the React Router */}
+          <Routes>
+            {/* Set the home route */}
+            <Route path="/" element={<Home />} />
+            
+            {/* Set the route for the list of objects */}
+            <Route path="/listOfObject" element={<List />} />
 
-  <Route path="/contact" element={<Contact />} />
-</Routes>
+            {/* Set the contact route */}
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </div>
       </Router>
-   
     </div>
-   
   );
 }
 
 export default App;
+
+
+// drop the link of your hosted front-end  and Github Repo at the start of the presentation
+// demo the site and show responsiveness of one page (please spend less than 1 minute)
+// components created
+// show your routes created
+// display your database
+// be mindful of time - each person has a 10min window that includes time for questions.

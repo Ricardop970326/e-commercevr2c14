@@ -8,8 +8,8 @@ const Navbar = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [shoppingListVisible, setShoppingListVisible] = useState(false);
 
-  const [loginVisible, setLoginVisible] = useState(false);
-const [signupVisible, setSignupVisible] = useState(false);
+//   const [loginVisible, setLoginVisible] = useState(false);
+// const [signupVisible, setSignupVisible] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle('dark', mode === 'dark-mode');
@@ -36,15 +36,15 @@ const [signupVisible, setSignupVisible] = useState(false);
     setSearchActive((prevSearchActive) => !prevSearchActive);
   };
 
-  const toggleLogin = () => {
-  setLoginVisible((prev) => !prev);
-  setSignupVisible(false); // Close signup window if open
-};
+//   const toggleLogin = () => {
+//   setLoginVisible((prev) => !prev);
+//   setSignupVisible(false); // Close signup window if open
+// };
 
-const toggleSignup = () => {
-  setSignupVisible((prev) => !prev);
-  setLoginVisible(false); // Close login window if open
-};
+// const toggleSignup = () => {
+//   setSignupVisible((prev) => !prev);
+//   setLoginVisible(false); // Close login window if open
+// };
 
   return (
  
