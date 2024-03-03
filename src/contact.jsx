@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "../src/css/contact.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+
 
 export default function Contact() {
   // State to store form data
@@ -106,12 +105,11 @@ export default function Contact() {
     }
   };
 
-  // Rest of the code...
+
   
 
   return (
     <>
-      <Navbar />
       <main>
         <div id="formcontact">
         <form
@@ -188,7 +186,6 @@ export default function Contact() {
           </form>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

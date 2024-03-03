@@ -1,18 +1,15 @@
 
 import React from 'react';
-import Footer from './components/footer.js';
-import Navbar from "./components/navbar.js"
+
 import Hero from "./components/hero.js"
 import Carousel from './components/carousel.js';
 
-// Import the necessary components
 
 // Define the main App component
 const App = () => {
   return (
     <>
       {/* Render the Navbar component */}
-      <Navbar/>
 
       {/* Render the Hero component */}
       <Hero/>
@@ -45,7 +42,6 @@ const App = () => {
       </section>
 
       {/* Render the Footer component */}
-      <Footer/>
     </>
   );
 }

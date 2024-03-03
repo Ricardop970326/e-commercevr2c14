@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/navbar.css'; // Import your custom stylesheet
+import '../css/navbar.css'; 
 
 const Navbar = () => {
   const [mode, setMode] = useState(localStorage.getItem('mode') || 'light-mode');
