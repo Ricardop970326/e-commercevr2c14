@@ -1,21 +1,143 @@
-import React, { useState } from 'react';
-// import Dron from "../image/dron.jpeg"
-// import Camera from "../image/camera.jpg"
-// import Headphones from "../image/headphones.jpg"
-
+import React, { useState, useEffect } from 'react';
+import Navbar from "./components/navbar"
+import Footer from "./components/footer"
 import List from './components/list';
 
-const App = () => {
+const ListOfObject = () => {
+  const [productTypeFilter, setProductTypeFilter] = useState('');
+  const [priceRangeMin, setPriceRangeMin] = useState('');
+  const [priceRangeMax, setPriceRangeMax] = useState('');
+  const [searchBy, setSearchBy] = useState('productType'); // Default to searching by product type
+  const [filters, setFilters] = useState({});
+
+  useEffect(() => {
+    // Update filters when inputs change
+    setFilters({
+      productType: searchBy === 'productType' ? productTypeFilter : '',
+      priceRange: searchBy === 'price' ? [priceRangeMin, priceRangeMax] : [],
+    });
+  }, [searchBy, productTypeFilter, priceRangeMin, priceRangeMax]);
+
+  // Console log to check the current filters
+  console.log(filters);
+
   return (
     <>
-    <List/>
+      <div>
+        <h1 id='titlelist'>List of Products</h1>
+        <div>
+          <select className='dropdownmenu1' value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+            <option value="productType">Search by Product Type</option>
+            <option value="price">Search by Price</option>
+          </select>
+          {searchBy === 'productType' && (
+            <input 
+              type="text"
+              placeholder="Product Type"
+              value={productTypeFilter}
+              onChange={(e) => setProductTypeFilter(e.target.value)}
+              className="your-custom-class" 
+              style={{  border:' 1px solid #9a9797',
+                borderRadius: '10px',
+                padding:'5px',
+                margin: '10px',
+                marginBottom: '20px',}}
+            />
+          )}
+          {searchBy === 'price' && (
+            <>
+              <input className='textmenu'
+                type="number"
+                placeholder="Min Price"
+                value={priceRangeMin}
+                onChange={(e) => setPriceRangeMin(e.target.value)}
+              />
+              <input className='textmenu'
+                type="number"
+                placeholder="Max Price"
+                value={priceRangeMax}
+                onChange={(e) => setPriceRangeMax(e.target.value)}
+              />
+            </>
+          )}
+        </div>
+      </div>
+      <List filters={filters} />
     </>
   );
 }
 
-export default App;
+export default ListOfObject;
 
 
+// import React, { useState, useEffect } from 'react';
+// import Navbar from "./components/navbar"
+// import Footer from "./components/footer"
+// import List from './components/list';
+
+// const ListOfObject = () => {
+//   const [productTypeFilter, setProductTypeFilter] = useState('');
+//   const [priceRangeMin, setPriceRangeMin] = useState('');
+//   const [priceRangeMax, setPriceRangeMax] = useState('');
+//   const [searchBy, setSearchBy] = useState('productType'); // Default to searching by product type
+//   const [filters, setFilters] = useState({});
+
+//   useEffect(() => {
+//     // Update filters when inputs change
+//     setFilters({
+//       productType: searchBy === 'productType' ? productTypeFilter : '',
+//       priceRange: searchBy === 'price' ? [priceRangeMin, priceRangeMax] : [],
+//     });
+//   }, [searchBy, productTypeFilter, priceRangeMin, priceRangeMax]);
+
+//   return (
+//     <>
+//       <div>
+//         <h1 id='titlelist'>List of Products</h1>
+//         <div>
+//           <select className='dropdownmenu1' value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+//             <option value="productType">Search by Product Type</option>
+//             <option value="price">Search by Price</option>
+//           </select>
+//           {searchBy === 'productType' && (
+//             <input 
+//               type="text"
+//               placeholder="Product Type"
+//               value={productTypeFilter}
+//               onChange={(e) => setProductTypeFilter(e.target.value)}
+//               className="your-custom-class" 
+//               style={{  border:' 1px solid #9a9797',
+//                 borderRadius: '10px',
+//                 padding:'5px',
+//                 margin: '10px',
+//                 marginBottom: '20px',}}
+//             />
+//           )}
+//           {searchBy === 'price' && (
+//             <>
+//               <input className='textmenu'
+//                 type="number"
+//                 placeholder="Min Price"
+//                 value={priceRangeMin}
+//                 onChange={(e) => setPriceRangeMin(e.target.value)}
+//               />
+//               <input className='textmenu'
+//                 type="number"
+//                 placeholder="Max Price"
+//                 value={priceRangeMax}
+//                 onChange={(e) => setPriceRangeMax(e.target.value)}
+//               />
+//             </>
+//           )}
+//         </div>
+//       </div>
+//       <List filters={filters} />
+//       console.log(List)
+//     </>
+//   );
+// }
+
+// export default ListOfObject;
 
 
 
@@ -75,7 +197,7 @@ export default App;
 //   return (
 //     <>
 
-//       <Navbar />
+   
 
 // <div>
 //       {/* Title */}
@@ -124,7 +246,7 @@ export default App;
 //       {/* List component with filtering props */}
     
 //      </div>
-//      <Footer/>
+   
  
 //     </> 
     

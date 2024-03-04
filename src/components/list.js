@@ -18,19 +18,19 @@ const List = ({ filters }) => {
   }, []);
 
   useEffect(() => {
-    // Update filtered products when filters change
     const newFilteredProducts = products.filter(product => {
-      const matchesProductType = filters.productType ? product.type.includes(filters.productType) : true; // Check if the product type matches the filter criteria
+      const matchesProductType = filters.productType && product.type ? product.type.includes(filters.productType) : true;
       const matchesPriceRange = filters.priceRange.length === 2
-        ? product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1] // Check if the product price is within the filter price range
-        : true; // If no price range is specified, consider all products as a match
-
-      return matchesProductType && matchesPriceRange; // Return true if both filter conditions are met
+        ? parseFloat(product.price) >= parseFloat(filters.priceRange[0] || 10) && parseFloat(product.price) <= parseFloat(filters.priceRange[1] || 3000)
+        : true;
+  
+      return matchesProductType && matchesPriceRange;
     });
+  
+    setFilteredProducts(newFilteredProducts);
 
-    setFilteredProducts(newFilteredProducts); // Update the 'filteredProducts' state with the newly filtered products
+    console.log('Filtered products:', newFilteredProducts); // Log filtered products
   }, [filters, products]);
-
   return (
     <>
       <div className="productbox">
@@ -59,6 +59,329 @@ const List = ({ filters }) => {
 };
 
 export default List;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import "../css/listobjects.css"
+
+// const List = ({ filters }) => {
+//   const [products, setProducts] = useState([]); // Holds the list of all products
+//   const [filteredProducts, setFilteredProducts] = useState([]); // Holds the list of filtered products based on the applied filters
+
+//   useEffect(() => {
+//     // Fetch the list of products from the API when the component mounts
+//     fetch('http://localhost:4000/api/products')
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setProducts(data); // Store the fetched products in the 'products' state variable
+//         // Initially, set filtered products to all products
+//         setFilteredProducts(data);
+//       })
+//       .catch((error) => console.error('Error fetching data:', error));
+//   }, []);
+
+//   useEffect(() => {
+//     // Update filtered products when filters change
+//     const newFilteredProducts = products.filter(product => {
+//       // Check if product.type is defined before calling includes
+//       const matchesProductType = filters.productType && product.type ? product.type.includes(filters.productType) : true;
+//       const matchesPriceRange = filters.priceRange.length === 2
+//         ? product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]
+//         : true;
+
+//       return matchesProductType && matchesPriceRange;
+//     });
+
+//     setFilteredProducts(newFilteredProducts); // Update the 'filteredProducts' state with the newly filtered products
+//   }, [filters, products]);
+
+//   return (
+//     <>
+//       <div className="productbox">
+//         {/* Input field and filter options go here */}
+//         <ul className="productlist">
+//           {filteredProducts.map((product) => (
+//             <li key={product.id} className="productitem">
+//               <h3>{product.title}</h3>
+//               <br/><br/>
+//               <img
+//                 id={`productImage-${product.id}`} 
+//                 className="productimage"
+//                 src={`${process.env.PUBLIC_URL}${product.image}`}
+//                 alt={product.title}
+//               />
+//               <br/><br/>
+//               <p>{product.description}</p>
+//               <p className="price">${product.price}</p>
+//               <button className='addtocart' type="submit">Add to Cart</button>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default List;
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import "../css/listobjects.css"
+
+// const List = ({ filters }) => {
+//   const [products, setProducts] = useState([]); // Holds the list of all products
+//   const [filteredProducts, setFilteredProducts] = useState([]); // Holds the list of filtered products based on the applied filters
+//   const [error, setError] = useState(null); // Holds any error that occurs during data fetching
+
+//   useEffect(() => {
+//     // Fetch the list of products from the API when the component mounts
+//     fetch('http://localhost:4000/api/products')
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setProducts(data); // Store the fetched products in the 'products' state variable
+//         // Initially, set filtered products to all products
+//         setFilteredProducts(data);
+//       })
+//       .catch((error) => {
+//         console.error('Error fetching data:', error);
+//         setError(error); // Set the error state if an error occurs during fetching
+//       });
+//   }, []);
+
+//   useEffect(() => {
+//     // Update filtered products when filters change
+//     if (!filters || !filters.productType) {
+//       // If filters or productType is not defined, set filtered products to all products
+//       setFilteredProducts(products);
+//       return;
+//     }
+
+//     const newFilteredProducts = products.filter(product => {
+//       const matchesProductType = product.type.includes(filters.productType); // Check if the product type matches the filter criteria
+//       const matchesPriceRange = filters.priceRange.length === 2
+//         ? product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1] // Check if the product price is within the filter price range
+//         : true; // If no price range is specified, consider all products as a match
+
+//       return matchesProductType && matchesPriceRange; // Return true if both filter conditions are met
+//     });
+
+//     setFilteredProducts(newFilteredProducts); // Update the 'filteredProducts' state with the newly filtered products
+//   }, [filters, products]);
+
+//   if (error) {
+//     return <div>Error: {error.message}</div>; // Render the error message if an error occurs during data fetching
+//   }
+
+//   return (
+//     <>
+//       <div className="productbox">
+//         {/* Input field and filter options go here */}
+//         <ul className="productlist">
+//           {filteredProducts.map((product) => (
+//             <li key={product.id} className="productitem">
+//               <h3>{product.title}</h3>
+//               <br/><br/>
+//               <img
+//                 id={`productImage-${product.id}`} 
+//                 className="productimage"
+//                 src={`${process.env.PUBLIC_URL}${product.image}`}
+//                 alt={product.title}
+//               />
+//               <br/><br/>
+//               <p>{product.description}</p>
+//               <p className="price">${product.price}</p>
+//               <button className='addtocart' type="submit">Add to Cart</button>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default List;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////
+
+
+// import React, { useState, useEffect } from 'react';
+// import "../css/listobjects.css"
+
+// const List = ({ filters }) => {
+//   const [products, setProducts] = useState([]); // Holds the list of all products
+//   const [filteredProducts, setFilteredProducts] = useState([]); // Holds the list of filtered products based on the applied filters
+
+//   useEffect(() => {
+//     // Fetch the list of products from the API when the component mounts
+//     fetch('http://localhost:4000/api/products')
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setProducts(data); // Store the fetched products in the 'products' state variable
+//         // Initially, set filtered products to all products
+//         setFilteredProducts(data);
+//       })
+//       .catch((error) => console.error('Error fetching data:', error));
+//   }, []);
+
+//   useEffect(() => {
+//     // Update filtered products when filters change
+//     if (!filters || !filters.productType) {
+//       // If filters or productType is not defined, set filtered products to all products
+//       setFilteredProducts(products);
+//       return;
+//     }
+
+//     const newFilteredProducts = products.filter(product => {
+//       const matchesProductType = product.type.includes(filters.productType); // Check if the product type matches the filter criteria
+//       const matchesPriceRange = filters.priceRange.length === 2
+//         ? product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1] // Check if the product price is within the filter price range
+//         : true; // If no price range is specified, consider all products as a match
+
+//       return matchesProductType && matchesPriceRange; // Return true if both filter conditions are met
+//     });
+
+//     setFilteredProducts(newFilteredProducts); // Update the 'filteredProducts' state with the newly filtered products
+//   }, [filters, products]);
+
+//   return (
+//     <>
+//       <div className="productbox">
+//         {/* Input field and filter options go here */}
+//         <ul className="productlist">
+//           {filteredProducts.map((product) => (
+//             <li key={product.id} className="productitem">
+//               <h3>{product.title}</h3>
+//               <br/><br/>
+//               <img
+//                 id={`productImage-${product.id}`} 
+//                 className="productimage"
+//                 src={`${process.env.PUBLIC_URL}${product.image}`}
+//                 alt={product.title}
+//               />
+//               <br/><br/>
+//               <p>{product.description}</p>
+//               <p className="price">${product.price}</p>
+//               <button className='addtocart' type="submit">Add to Cart</button>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default List;
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import "../css/listobjects.css"
+
+// const List = ({ filters }) => {
+//   const [products, setProducts] = useState([]); // Holds the list of all products
+//   const [filteredProducts, setFilteredProducts] = useState([]); // Holds the list of filtered products based on the applied filters
+
+//   useEffect(() => {
+//     // Fetch the list of products from the API when the component mounts
+//     fetch('http://localhost:4000/api/products')
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setProducts(data); // Store the fetched products in the 'products' state variable
+//         // Initially, set filtered products to all products
+//         setFilteredProducts(data);
+//       })
+//       .catch((error) => console.error('Error fetching data:', error));
+//   }, []);
+
+//   useEffect(() => {
+//     // Update filtered products when filters change
+//     const newFilteredProducts = products.filter(product => {
+//       const matchesProductType = filters.productType ? product.type.includes(filters.productType) : true; // Check if the product type matches the filter criteria
+//       const matchesPriceRange = filters.priceRange.length === 2
+//         ? product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1] // Check if the product price is within the filter price range
+//         : true; // If no price range is specified, consider all products as a match
+
+//       return matchesProductType && matchesPriceRange; // Return true if both filter conditions are met
+//     });
+
+//     setFilteredProducts(newFilteredProducts); // Update the 'filteredProducts' state with the newly filtered products
+//   }, [filters, products]);
+
+//   return (
+//     <>
+//       <div className="productbox">
+//         {/* Input field and filter options go here */}
+//         <ul className="productlist">
+//           {filteredProducts.map((product) => (
+//             <li key={product.id} className="productitem">
+//               <h3>{product.title}</h3>
+//               <br/><br/>
+//               <img
+//                 id={`productImage-${product.id}`} 
+//                 className="productimage"
+//                 src={`${process.env.PUBLIC_URL}${product.image}`}
+//                 alt={product.title}
+//               />
+//               <br/><br/>
+//               <p>{product.description}</p>
+//               <p className="price">${product.price}</p>
+//               <button className='addtocart' type="submit">Add to Cart</button>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default List;
 
 
 

@@ -1,1 +1,0 @@
-SELECT * FROM List_Of_Products.products;
