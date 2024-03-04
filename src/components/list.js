@@ -7,7 +7,7 @@ const List = ({ filters }) => {
 
   useEffect(() => {
     // Fetch the list of products from the API when the component mounts
-    fetch('http://localhost:4000/api/products')
+    fetch('http://localhost:4000/products')
       .then((response) => response.json())
       .then((data) => {
         setProducts(data); // Store the fetched products in the 'products' state variable
