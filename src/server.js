@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Endpoint to serve products from the JSON file
-app.get('/api/products', (req, res) => {
+app.get('/products', (req, res) => {
   try {
     // Read the JSON file and parse its contents
     const products = JSON.parse(fs.readFileSync('./products.json', 'utf-8'));
