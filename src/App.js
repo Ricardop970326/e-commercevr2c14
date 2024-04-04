@@ -6,7 +6,7 @@ import Contact from "./contact.jsx";
 import Footer from './components/footer.js';
 import Navbar from "./components/navbar.js"
 // Import the necessary CSS file
-
+//////////////
 function App() {
   return (
     <div className="App">
